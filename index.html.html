@@ -1,1 +1,1021 @@
-file:///C:/Users/ShelbyMcWhorter/Downloads/ethos-bulk-import-assessment_1.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ethos – Bulk Import Roster Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:#f0f2f0;min-height:100vh;overflow:hidden}
+.t-bar{background:#17191C;padding:9px 20px;display:flex;align-items:center;justify-content:space-between}
+.t-logo{display:flex;align-items:center;gap:8px}
+.t-mark{display:flex;flex-direction:column;gap:2.5px}
+.t-mark span{display:block;background:#DCFFF6;border-radius:1px}
+.t-mark span:nth-child(1){width:16px;height:2.5px}
+.t-mark span:nth-child(2){width:12px;height:2.5px}
+.t-mark span:nth-child(3){width:8px;height:2.5px}
+.t-wordmark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;color:#fff}
+.t-meta{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#6B7982}
+.t-prog{background:#17191C;padding:6px 20px 8px;border-top:1px solid #252830;display:flex;align-items:center;gap:12px}
+.t-dots{display:flex;gap:5px}
+.tdot{width:7px;height:7px;border-radius:50%;background:#252830;transition:background .3s}
+.tdot.done{background:#DCFFF6}.tdot.active{background:#fff}
+.t-track{flex:1;height:2px;background:#252830;border-radius:2px}
+.t-fill{height:100%;background:#DCFFF6;border-radius:2px;transition:width .4s}
+.t-pct{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#6B7982}
+.i-panel{background:#fff;border-bottom:1px solid #e2e8e5;padding:10px 18px;display:flex;gap:12px;align-items:flex-start}
+.i-icon{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#17191C;color:#DCFFF6;flex-shrink:0;margin-top:1px;font-size:11px}
+.i-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:#17191C;margin-bottom:2px}
+.i-desc{font-size:11px;color:#6B7982;line-height:1.5}
+.app{display:flex;height:calc(100vh - 74px);overflow:hidden;position:relative}
+.lnav{width:54px;background:#fff;border-right:1px solid #e8ecea;display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:2px;flex-shrink:0;z-index:1}
+.ni{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 5px;border-radius:5px;cursor:pointer;width:46px;color:#6B7982;transition:background .12s}
+.ni svg{width:18px;height:18px}
+.ni span{font-family:'Space Grotesk',sans-serif;font-size:9px}
+.ni.sel{color:#17191C;background:#f0f2f0}
+.spanel{width:178px;background:#fff;border-right:1px solid #e8ecea;padding:10px;flex-shrink:0;display:none}
+.spanel.show{display:block}
+.cbtn{display:flex;align-items:center;justify-content:center;gap:5px;width:100%;padding:7px;background:#5a8f5a;color:#fff;border:none;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;cursor:pointer;margin-bottom:8px}
+.spi{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-size:11px;color:#17191C}
+.spi svg{width:13px;height:13px;color:#6B7982;flex-shrink:0}
+.spi.act{background:#e8f5e9;font-weight:500}
+.ddmenu{position:absolute;top:calc(100% + 3px);left:0;width:100%;background:#fff;border:1px solid #e2e8e5;border-radius:5px;box-shadow:0 4px 18px rgba(0,0,0,.12);z-index:50;display:none}
+.ddmenu.open{display:block}
+.ddi{display:flex;align-items:center;gap:7px;padding:8px 11px;font-size:11px;font-family:'Space Grotesk',sans-serif;color:#17191C;cursor:pointer}
+.ddi:hover{background:#f0f2f0}
+.ddi svg{width:13px;height:13px;color:#6B7982}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#fff;position:relative}
+/* explore */
+.explore-page{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.explore-topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid #e8ecea;flex-shrink:0}
+.etab{display:flex;align-items:center;gap:5px;padding:5px 14px;border-radius:20px;font-family:'Space Grotesk',sans-serif;font-size:12px;cursor:pointer;border:none;background:none;color:#6B7982}
+.etab.active{background:#e8f5e9;color:#2d6a4f;font-weight:500}
+.etab svg{width:13px;height:13px}
+.explore-help{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#6B7982;display:flex;align-items:center;gap:4px;cursor:pointer;background:none;border:1px solid #e8ecea;padding:4px 10px;border-radius:4px}
+.explore-content{flex:1;overflow-y:auto;padding:22px 24px}
+.explore-header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.explore-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7db87d,#4a7a5a);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.explore-title{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:400;color:#17191C}
+.explore-sub{font-size:12px;color:#6B7982;margin-bottom:18px;margin-left:44px}
+.explore-filter{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+.efilter-label{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#6B7982}
+.efilter-sel{font-family:'Space Grotesk',sans-serif;font-size:11px;border:1px solid #e8ecea;border-radius:4px;padding:4px 8px;color:#17191C;background:#fff;cursor:pointer}
+.explore-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ecard{border:1px solid #e8ecea;border-radius:8px;padding:18px 16px;cursor:pointer;transition:box-shadow .15s,border-color .15s;background:#fff}
+.ecard:hover{box-shadow:0 2px 12px rgba(0,0,0,.08);border-color:#c8dac8}
+.ecard-icon{width:32px;height:32px;border-radius:6px;background:#f0f2f0;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.ecard-icon svg{width:16px;height:16px;color:#5a8f5a}
+.ecard-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:#17191C;margin-bottom:4px}
+.ecard-desc{font-size:11px;color:#6B7982;line-height:1.5}
+/* users */
+.users-page{flex:1;display:flex;flex-direction:column;overflow:hidden;display:none}
+.users-page.show{display:flex}
+.abar{padding:8px 14px;border-bottom:1px solid #e8ecea;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.fbtn{display:flex;align-items:center;gap:4px;font-family:'Space Grotesk',sans-serif;font-size:11px;color:#6B7982;background:none;border:none;cursor:pointer}
+.cf{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#BEC9CE;background:none;border:none}
+.twrap{flex:1;overflow-y:auto}
+table{width:100%;border-collapse:collapse}
+thead th{text-align:left;padding:7px 11px;font-family:'Space Grotesk',sans-serif;font-size:10px;color:#6B7982;font-weight:500;border-bottom:1px solid #e8ecea;position:sticky;top:0;background:#fff;white-space:nowrap}
+.thi{display:flex;align-items:center;gap:3px}
+.si{display:flex;flex-direction:column;gap:1px}.si span{display:block;width:5px;height:1px;background:#BEC9CE}
+tbody td{padding:7px 11px;font-size:11px;color:#17191C;border-bottom:1px solid #f0f2f0}
+tbody tr:hover td{background:#fafcfb}
+tbody tr.nr td{background:#f0fff9}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:9px;font-family:'Space Grotesk',sans-serif;font-weight:500}
+.ba{background:#e6f9f0;color:#2d6a4f;border:1px solid #c3e6cb}
+.bi{background:#e8f0fe;color:#3a5a8a;border:1px solid #c5d8f8}
+.bd{width:5px;height:5px;border-radius:50%}
+.ba .bd{background:#2d6a4f}.bi .bd{background:#3a5a8a}
+.ebar{padding:7px 14px;border-top:1px solid #e8ecea;display:none;align-items:center;justify-content:space-between;flex-shrink:0}
+.ebtn{display:flex;align-items:center;gap:4px;font-family:'Space Grotesk',sans-serif;font-size:10px;color:#6B7982;background:none;border:none;cursor:pointer}
+.pnav{display:flex;align-items:center;gap:7px;font-size:10px;color:#6B7982;font-family:'Space Grotesk',sans-serif}
+.pbox{border:1px solid #e2e8e5;padding:1px 7px;border-radius:3px;font-size:10px}
+/* modal */
+.mback{position:absolute;inset:0;background:rgba(23,25,28,.42);z-index:100;display:none;align-items:center;justify-content:center}
+.mback.open{display:flex}
+.modal{background:#fff;border-radius:8px;width:460px;max-width:95%;box-shadow:0 8px 40px rgba(0,0,0,.18)}
+.mhdr{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 11px;border-bottom:1px solid #e8ecea}
+.mhdr-t{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:500;color:#17191C}
+.mclose{background:none;border:none;font-size:16px;color:#6B7982;cursor:pointer}
+.mbody{padding:16px}
+.mftr{padding:11px 16px;border-top:1px solid #e8ecea;display:flex;align-items:center;justify-content:space-between}
+.fl{display:flex;align-items:center;gap:7px}
+.uz{border:1.5px dashed #BEC9CE;border-radius:6px;padding:26px 18px;text-align:center;background:#fafcfb;transition:all .2s;cursor:pointer}
+.uz:hover{border-color:#5a8f5a;background:#f0fff4}
+.uz.dza{border-color:#5a8f5a;border-style:solid;cursor:default}
+.uz-icon{margin:0 auto 7px;width:28px;height:28px;color:#6B7982}
+.uz-t{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#6B7982}
+.uz-s{font-size:10px;color:#BEC9CE;margin-top:2px}
+.frow{display:none;align-items:center;gap:7px;margin-top:9px;padding:5px 9px;background:#f0f2f0;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-size:11px;color:#17191C}
+.frow.show{display:flex}
+.fdot{width:9px;height:9px;border-radius:50%;background:#2d6a4f;margin-left:auto}
+.cpop{background:#fff8f6;border:1.5px solid #e0793a;border-radius:5px;padding:11px 13px;margin-top:9px;display:none}
+.cpop.show{display:block}
+.cpop-t{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:#17191C;line-height:1.5}
+.cpi{color:#e0793a;font-size:13px;flex-shrink:0}
+.cpb-row{display:flex;gap:5px;margin-top:8px;justify-content:flex-end}
+.cpb{padding:3px 13px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;cursor:pointer;border:none}
+.cpb-n{background:#fff;color:#17191C;border:1px solid #BEC9CE}
+.cpb-y{background:#17191C;color:#DCFFF6}
+.sban{background:#f0fff9;border:1px solid #c3e6cb;border-radius:5px;padding:11px 13px;margin-top:9px;display:none}
+.sban.show{display:flex;align-items:flex-start;gap:9px}
+.sbi{font-size:14px;flex-shrink:0}
+.sbt{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;color:#17191C}
+.sbs{font-size:10px;color:#6B7982;margin-top:2px}
+.mb{padding:5px 14px;border-radius:4px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:500;cursor:pointer;border:none}
+.mb-o{background:#fff;color:#17191C;border:1px solid #BEC9CE}
+.mb-o:hover{background:#f0f2f0}
+.mb-p{background:#17191C;color:#fff}
+.mb-p:hover{background:#2a2d31}
+.mb-p:disabled{opacity:.35;cursor:not-allowed}
+.mb-gh{background:#f0f2f0;border:none;font-family:'Space Grotesk',sans-serif;font-size:10px;color:#17191C;cursor:pointer;display:flex;align-items:center;gap:4px;padding:4px 9px;border-radius:3px}
+.mb-gh:hover{background:#e2e8e5}
+.mb-done{background:#17191C;color:#fff;padding:5px 20px}
+.mv{display:none}.mv.active{display:block}
+
+/* ── SPREADSHEET ── */
+.ss-back{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:400;display:none;align-items:center;justify-content:center}
+.ss-back.open{display:flex}
+.ss-win{background:#f5f5f5;border-radius:10px;width:1080px;max-width:98vw;box-shadow:0 20px 80px rgba(0,0,0,.45);overflow:hidden;display:flex;flex-direction:column;max-height:88vh}
+.ss-body-wrap{display:flex;flex:1;overflow:hidden}
+.ss-src{width:230px;flex-shrink:0;background:#1e2228;display:flex;flex-direction:column;overflow:hidden}
+.ss-src-hdr{padding:8px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2e343e;flex-shrink:0}
+.ss-src-title{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;color:#DCFFF6;display:flex;align-items:center;gap:5px}
+.ss-src-copy{background:#2e343e;border:none;border-radius:3px;padding:3px 9px;font-size:10px;font-family:'Space Grotesk',sans-serif;color:#a0aab4;cursor:pointer;transition:all .15s;white-space:nowrap}
+.ss-src-copy:hover{background:#3a4250;color:#fff}
+.ss-src-copy.copied{background:#2d6a4f;color:#DCFFF6}
+.ss-src-hint{padding:6px 12px 6px;font-size:10px;color:#6B7982;line-height:1.5;flex-shrink:0;border-bottom:1px solid #2e343e}
+.ss-src-hint b{color:#9aa5b4}
+.ss-src-data{flex:1;overflow-y:auto;padding:8px 8px 8px}
+.ss-src-row{border:1px solid #2e343e;border-radius:4px;overflow:hidden;margin-bottom:6px;transition:border-color .12s}
+.ss-src-row:hover{border-color:#4a5568}
+.ss-src-rowhdr{padding:3px 8px;background:#252b34;font-size:9px;font-family:'Space Grotesk',sans-serif;color:#6B7982;text-transform:uppercase;letter-spacing:.5px}
+.ss-src-cell{padding:2px 8px 2px;font-size:10px;background:#1a1f27;display:flex;gap:6px;align-items:baseline}
+.ss-src-lbl{color:#4a5568;min-width:52px;font-size:9px;font-family:'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.3px;flex-shrink:0}
+.ss-src-val{color:#e2e8f0;font-size:10px;word-break:break-all}
+.ss-src-cell:last-child{padding-bottom:4px}
+.ss-grid-side{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.ss-titlebar{background:linear-gradient(180deg,#e8e8e8,#d8d8d8);padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #bbb;flex-shrink:0}
+.ss-dots{display:flex;gap:7px}
+.ss-dot{width:12px;height:12px;border-radius:50%;cursor:pointer}
+.ss-dot:hover{filter:brightness(.85)}
+.ss-win-title{flex:1;text-align:center;font-size:12px;color:#444;font-weight:500}
+.ss-win-title b{color:#222}
+.ss-ribbon{background:#f0f0f0;border-bottom:1px solid #ccc;padding:5px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.ss-rb-grp{display:flex;align-items:center;gap:4px;padding-right:10px;border-right:1px solid #ddd}
+.ss-rb-grp:last-child{border-right:none;margin-left:auto}
+.ss-rbtn{background:#fff;border:1px solid #ccc;border-radius:3px;padding:4px 10px;font-size:11px;font-family:'Space Grotesk',sans-serif;cursor:pointer;color:#333;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.ss-rbtn:hover{background:#e8e8e8}
+.ss-rbtn.green{background:#217346;color:#fff;border-color:#1a5c38;font-weight:600}
+.ss-rbtn.green:hover{background:#1a5c38}
+.ss-rbtn svg{width:11px;height:11px}
+.ss-fname-lbl{font-size:11px;color:#555;padding:4px 8px;background:#fff;border:1px solid #ccc;border-radius:3px;font-family:'Space Grotesk',sans-serif;min-width:140px}
+.ss-fbar{background:#fff;border-bottom:1px solid #d0d0d0;padding:3px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ss-cellref{font-size:11px;color:#333;min-width:40px;padding:2px 6px;border:1px solid #ccc;border-radius:2px;text-align:center;background:#f8f8f8;font-family:monospace}
+.ss-fbar-div{width:1px;height:16px;background:#ccc}
+.ss-fbar-val{flex:1;font-size:11px;color:#333}
+.ss-grid-wrap{flex:1;overflow:auto;background:#fff}
+.ss-tbl{border-collapse:collapse;width:100%}
+.ss-tbl .ch{background:#f2f2f2;border:1px solid #d0d0d0;padding:5px 8px;font-size:11px;color:#444;font-weight:600;text-align:center;min-width:140px;white-space:nowrap;position:sticky;top:0;z-index:2;user-select:none}
+.ss-tbl .ch.req:after{content:'*';color:#c0392b;margin-left:2px}
+.ss-tbl .rn{background:#f2f2f2;border:1px solid #d0d0d0;padding:3px 6px;font-size:10px;color:#888;text-align:center;width:30px;position:sticky;left:0;z-index:1;user-select:none}
+.ss-tbl .corner{background:#f2f2f2;border:1px solid #d0d0d0;position:sticky;top:0;left:0;z-index:3;width:30px}
+.ss-cell{border:1px solid #e0e0e0;padding:0;background:#fff}
+.ss-cell input,.ss-cell select{width:100%;border:none;outline:none;padding:5px 8px;font-size:11px;font-family:'Roboto',sans-serif;color:#222;background:transparent;display:block}
+.ss-cell input:focus,.ss-cell select:focus{background:#e8f0fe;box-shadow:inset 0 0 0 2px #3478F6}
+.ss-cell select{cursor:pointer}
+.ss-err{background:#fff0f0;border:1px solid #f5c6cb;border-radius:4px;padding:8px 13px;margin:0 12px 8px;font-size:11px;color:#721c24;display:none;flex-shrink:0}
+.ss-err.show{display:block}
+.ss-statusbar{background:#ebebeb;border-top:1px solid #ccc;padding:4px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ss-status{font-size:10px;color:#666}
+.ss-rowcount{font-size:10px;color:#888;font-weight:500}
+
+/* ── SAVE DIALOG ── */
+.sd-back{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:none;align-items:center;justify-content:center}
+.sd-back.open{display:flex}
+.sd-box{background:#f5f5f5;border-radius:8px;width:450px;box-shadow:0 12px 50px rgba(0,0,0,.35);overflow:hidden}
+.sd-bar{background:linear-gradient(180deg,#e8e8e8,#d8d8d8);padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #bbb}
+.sd-dots{display:flex;gap:6px}
+.sd-dot{width:11px;height:11px;border-radius:50%}
+.sd-title-txt{flex:1;text-align:center;font-size:12px;color:#444;font-weight:500}
+.sd-body{padding:16px}
+.sd-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sd-lbl{font-size:11px;color:#555;width:68px;text-align:right;flex-shrink:0}
+.sd-inp{flex:1;border:1px solid #bbb;border-radius:3px;padding:5px 9px;font-size:12px;color:#222;background:#fff;outline:none}
+.sd-inp:focus{border-color:#3478F6;box-shadow:0 0 0 2px rgba(52,120,246,.15)}
+.sd-locs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px}
+.sd-loc{border:1px solid #ccc;border-radius:4px;padding:7px 8px;text-align:center;cursor:pointer;font-size:11px;color:#333;background:#fff;transition:all .15s}
+.sd-loc:hover{background:#e8e8e8}
+.sd-loc.sel{background:#3478F6;color:#fff;border-color:#3478F6}
+.sd-loc-icon{font-size:14px;display:block;margin-bottom:2px}
+.sd-hint{font-size:10px;color:#888}
+.sd-footer{padding:10px 16px;border-top:1px solid #ddd;display:flex;justify-content:flex-end;gap:7px;background:#ebebeb}
+.sd-btn{padding:5px 16px;border-radius:4px;font-size:11px;font-family:'Space Grotesk',sans-serif;font-weight:500;cursor:pointer;border:1px solid transparent}
+.sd-cancel{background:#ddd;color:#333;border-color:#bbb}
+.sd-cancel:hover{background:#ccc}
+.sd-save{background:#3478F6;color:#fff}
+.sd-save:hover{background:#2563eb}
+.sd-save:disabled{opacity:.4;cursor:not-allowed}
+
+/* ── FILE PICKER ── */
+.fp-back{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:200;display:none;align-items:center;justify-content:center}
+.fp-back.open{display:flex}
+.fp{background:#f5f5f5;border-radius:10px;width:620px;max-width:97%;box-shadow:0 16px 60px rgba(0,0,0,.35);overflow:hidden}
+.fp-bar{background:#e0e0e0;padding:9px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #ccc}
+.fp-dots{display:flex;gap:6px}
+.fp-dot{width:12px;height:12px;border-radius:50%}
+.fp-bar-title{font-size:12px;color:#555;font-weight:500;flex:1;text-align:center}
+.fp-nav-btns{display:flex;gap:4px}
+.fp-nav-btn{background:#ccc;border:none;border-radius:3px;padding:3px 8px;font-size:11px;color:#555;cursor:pointer}
+.fp-search-bar{background:#e8e8e8;padding:5px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #d0d0d0}
+.fp-search{flex:1;background:#fff;border:1px solid #ccc;border-radius:4px;padding:4px 10px;font-size:11px;color:#333;outline:none}
+.fp-vbs{display:flex;gap:3px}
+.fp-vb{background:#ddd;border:none;border-radius:3px;padding:3px 7px;font-size:10px;cursor:pointer;color:#555}
+.fp-vb.active{background:#bbb}
+.fp-body{display:flex;height:290px}
+.fp-sidebar{width:148px;background:#ebebeb;border-right:1px solid #d0d0d0;padding:8px 0;overflow-y:auto;flex-shrink:0}
+.fp-sg{margin-bottom:4px}
+.fp-sg-label{font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.8px;padding:4px 12px 2px}
+.fp-si{display:flex;align-items:center;gap:7px;padding:5px 12px;font-size:11px;color:#333;cursor:pointer;border-radius:3px;margin:1px 4px}
+.fp-si:hover{background:#ddd}
+.fp-si.active{background:#3478F6;color:#fff}
+.fp-si svg{width:14px;height:14px;flex-shrink:0}
+.fp-si.active svg{stroke:#fff}
+.fp-files{flex:1;padding:8px;overflow-y:auto;background:#fff}
+.fp-file{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:12px;color:#333}
+.fp-file:hover{background:#e8f0fe}
+.fp-file.selected{background:#3478F6;color:#fff}
+.fp-file.selected .fp-fmeta{color:#c8dafe}
+.fp-finfo{flex:1;min-width:0}
+.fp-fname-txt{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fp-fmeta{font-size:10px;color:#888;margin-top:1px}
+.fp-fdate{font-size:11px;color:#888;white-space:nowrap;flex-shrink:0}
+.fp-folder{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:4px;cursor:pointer;font-size:12px;color:#333}
+.fp-folder:hover{background:#f0f0f0}
+.fp-empty{padding:40px;text-align:center;font-size:11px;color:#aaa}
+.fp-footer{background:#e8e8e8;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #d0d0d0}
+.fp-fname-bar{display:flex;align-items:center;gap:8px;flex:1;margin-right:12px}
+.fp-fname-label{font-size:11px;color:#555;white-space:nowrap}
+.fp-fname-input{flex:1;background:#fff;border:1px solid #bbb;border-radius:3px;padding:4px 8px;font-size:11px;color:#333;outline:none}
+.fp-btns{display:flex;gap:6px}
+.fp-cancel{background:#ddd;border:1px solid #bbb;border-radius:4px;padding:5px 14px;font-size:11px;cursor:pointer;color:#333}
+.fp-cancel:hover{background:#ccc}
+.fp-open{background:#3478F6;border:none;border-radius:4px;padding:5px 16px;font-size:11px;font-weight:600;cursor:pointer;color:#fff}
+.fp-open:disabled{opacity:.4;cursor:not-allowed}
+.fp-open:not(:disabled):hover{background:#2563eb}
+.fp-crumb{background:#e8e8e8;padding:4px 14px;display:flex;align-items:center;gap:4px;font-size:10px;color:#555;border-bottom:1px solid #d0d0d0}
+.fp-crumb span{cursor:pointer}.fp-crumb span:hover{text-decoration:underline}
+.fp-crumb .sep{color:#aaa;cursor:default}
+
+/* new row animation */
+@keyframes rowIn{from{opacity:0;transform:translateY(-6px);background:#d4edda}to{opacity:1;transform:translateY(0)}}
+tbody tr.nr{animation:rowIn .4s ease forwards}
+/* toast */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#17191C;color:#DCFFF6;font-family:'Space Grotesk',sans-serif;font-size:12px;padding:10px 22px;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:all .35s;z-index:999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* complete */
+.cover{position:absolute;inset:0;background:#fff;z-index:300;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px}
+.cover.open{display:flex}
+.co-icon{font-size:50px;margin-bottom:14px}
+.co-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:300;color:#17191C;margin-bottom:8px}
+.co-body{font-size:12px;color:#6B7982;max-width:380px;line-height:1.7;margin-bottom:20px}
+.co-recap{border:1px solid #e2e8e5;border-radius:7px;overflow:hidden;width:100%;max-width:440px;margin-bottom:24px;text-align:left}
+.co-row{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:11px;border-bottom:1px solid #f0f2f0}
+.co-row:last-child{border-bottom:none}
+.co-row:nth-child(even){background:#fafcfb}
+.co-key{font-family:'Space Grotesk',sans-serif;font-size:9px;color:#6B7982;text-transform:uppercase;letter-spacing:.5px}
+.co-val{font-weight:500;color:#17191C;font-size:11px}
+.co-btn{background:#17191C;color:#DCFFF6;border:none;padding:10px 26px;border-radius:5px;font-family:'Space Grotesk',sans-serif;font-size:12px;cursor:pointer}
+.co-btn:hover{background:#2a2d31}
+.co-score{display:inline-flex;align-items:center;gap:6px;background:#e6f9f0;border:1px solid #c3e6cb;border-radius:20px;padding:4px 14px;margin-bottom:20px;font-family:'Space Grotesk',sans-serif;font-size:12px;color:#2d6a4f;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="t-bar">
+  <div class="t-logo">
+    <div class="t-mark"><span></span><span></span><span></span></div>
+    <div class="t-wordmark">ETHOS</div>
+  </div>
+  <div class="t-meta" id="tMeta">Task Assessment — Bulk Import Roster</div>
+</div>
+<div class="t-prog">
+  <div class="t-dots" id="tDots"></div>
+  <div class="t-track"><div class="t-fill" id="tFill" style="width:0%"></div></div>
+  <div class="t-pct" id="tPct">0%</div>
+</div>
+<div class="i-panel">
+  <div class="i-icon" id="iNum">📋</div>
+  <div style="flex:1">
+    <div class="i-title" id="iTitle">Your Task: Bulk Import a User Roster</div>
+    <div class="i-desc" id="iDesc">Download the CSV template, fill in your user data, save the file, then upload it to complete a bulk import.</div>
+  </div>
+  <button id="completeBtn" onclick="showCover()" style="display:none;align-items:center;gap:6px;background:#17191C;color:#DCFFF6;border:none;border-radius:5px;padding:6px 14px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0">
+    Complete Assessment →
+  </button>
+</div>
+
+<div class="app">
+  <div class="lnav">
+    <div class="ni sel" id="navExplore" onclick="navClick('explore')" title="Explore">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span>Explore</span>
+    </div>
+    <div class="ni" onclick="navClick('folders')" title="Folders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>Folders</span></div>
+    <div class="ni" onclick="navClick('courses')" title="Courses"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Courses</span></div>
+    <div class="ni" onclick="navClick('library')" title="Library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>Library</span></div>
+    <div class="ni" id="navUsers" onclick="navClick('users')" title="Users"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Users</span></div>
+    <div class="ni" style="margin-top:auto" title="Grading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span>Grading</span></div>
+    <div class="ni" title="Analytics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>Analytics</span></div>
+    <div style="padding:8px 0;text-align:center">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:9px;color:#6B7982">Admin</div>
+      <div style="width:26px;height:13px;background:#5a8f5a;border-radius:7px;margin:3px auto;display:flex;align-items:center;padding:1px"><div style="width:9px;height:9px;background:#fff;border-radius:50%;margin-left:auto;margin-right:1px"></div></div>
+      <div style="font-size:8px;color:#BEC9CE">v1.8.125</div>
+    </div>
+  </div>
+
+  <div class="spanel" id="spanel">
+    <div style="position:relative">
+      <button class="cbtn" id="cbtn" onclick="toggleCreate()">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Create
+      </button>
+      <div class="ddmenu" id="ddmenu">
+        <div class="ddi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>New User</div>
+        <div class="ddi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg>New Group</div>
+        <div class="ddi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>New Org Attribute</div>
+        <div class="ddi" onclick="openBulkModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>Bulk Import Roster</div>
+      </div>
+    </div>
+    <div class="spi act" id="spUsers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>All Users (3)</div>
+    <div class="spi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>Saved Groups (0)</div>
+    <div class="spi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Org Attributes (0)</div>
+  </div>
+
+  <div class="main">
+    <!-- EXPLORE -->
+    <div class="explore-page" id="explorePage">
+      <div class="explore-topbar">
+        <div style="display:flex;gap:6px">
+          <button class="etab active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Explore</button>
+          <button class="etab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>History</button>
+        </div>
+        <button class="explore-help"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Help Guide</button>
+      </div>
+      <div class="explore-content">
+        <div class="explore-header">
+          <div class="explore-avatar">🌿</div>
+          <div class="explore-title">Explore what you can do</div>
+        </div>
+        <div class="explore-sub">Welcome to Ethos! Explore any of our workflows below, including content building and user management. Select any workflow to get started with our step-by-step, guided process.</div>
+        <div class="explore-filter"><span class="efilter-label">View:</span><select class="efilter-sel"><option>All</option><option>Content</option><option>Users</option></select></div>
+        <div class="explore-cards">
+          <div class="ecard"><div class="ecard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="ecard-title">Lesson from a Document</div><div class="ecard-desc">Convert your PDFs, PowerPoints, and Word files into captivating lessons using AI.</div></div>
+          <div class="ecard"><div class="ecard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="ecard-title">Quiz from a Document</div><div class="ecard-desc">Create a quiz from various document formats to identify key concepts and questions.</div></div>
+          <div class="ecard"><div class="ecard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="ecard-title">Export Lesson or Quiz to PDF</div><div class="ecard-desc">Export lesson(s) or quiz(es) to PDF easily! Create a document to share or print.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS PAGE -->
+    <div class="users-page" id="usersPage">
+      <div class="abar">
+        <button class="fbtn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Filter Attribute</button>
+        <button class="cf">Clear Filters</button>
+      </div>
+      <div class="twrap"><table>
+        <thead><tr>
+          <th><div class="thi">First Name<div class="si"><span></span><span></span></div></div></th>
+          <th><div class="thi">Last Name<div class="si"><span></span><span></span></div></div></th>
+          <th><div class="thi">Email<div class="si"><span></span><span></span></div></div></th>
+          <th>Roles</th><th>Status</th><th>User Attributes</th><th>Last Activity</th>
+        </tr></thead>
+        <tbody id="tbody">
+          <tr><td>Jane</td><td>Doe</td><td>janedoe@email.com</td><td>Learner</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr>
+          <tr><td>Shelby</td><td>McWhorter</td><td>shelbymcwhorter1@gmail.com</td><td>Admin</td><td><span class="badge ba"><span class="bd"></span>Active</span></td><td></td><td>2/23/2026 12:41 pm</td></tr>
+          <tr><td>Shelby</td><td>McWhorter</td><td>smcwhorter@ethossystems.com</td><td>Admin</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr>
+        </tbody>
+      </table></div>
+      <div class="ebar" id="ebar">
+        <button class="ebtn"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export List</button>
+        <div class="pnav"><span>‹</span><span class="pbox">1</span><span>›</span><span style="margin-left:4px">20 / page ∨</span></div>
+      </div>
+    </div>
+
+    <!-- IMPORT MODAL -->
+    <div class="mback" id="mback">
+      <div class="modal">
+        <div class="mhdr"><span class="mhdr-t">Bulk Import/Edit Roster</span><button class="mclose" onclick="closeModal()">✕</button></div>
+        <div class="mv active" id="mvUp">
+          <div class="mbody">
+            <div class="uz" id="uz" onclick="openFilePicker()">
+              <svg class="uz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+              <div class="uz-t">Click or drag .csv file to this area</div>
+              <div class="uz-s">File size limit 10 mb</div>
+            </div>
+            <div class="frow" id="frow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6B7982" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              <span id="fnLabel"></span><div class="fdot"></div>
+            </div>
+            <div class="cpop" id="cpop">
+              <div class="cpop-t"><span class="cpi">⚠</span><span>Are you sure you want to start importing? Proceeding with importing may trigger user invitations to the platform and/or content based on attributes.</span></div>
+              <div class="cpb-row">
+                <button class="cpb cpb-n" onclick="document.getElementById('cpop').classList.remove('show')">No</button>
+                <button class="cpb cpb-y" onclick="confirmImport()">Yes</button>
+              </div>
+            </div>
+          </div>
+          <div class="mftr">
+            <div class="fl">
+              <button class="mb-gh">Get started with our .csv template</button>
+              <button class="mb-gh" onclick="doDownload()"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button class="mb mb-o" onclick="closeModal()">Cancel</button>
+              <button class="mb mb-p" id="sibtn" disabled onclick="startImport()">Start Import</button>
+            </div>
+          </div>
+        </div>
+        <div class="mv" id="mvSuc">
+          <div class="mbody">
+            <div class="uz dza" style="cursor:default"><svg class="uz-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg><div class="uz-t">Click or drag .csv file to this area</div><div class="uz-s">File size limit 10 mb</div></div>
+            <div class="frow show"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6B7982" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg><span id="sucFname"></span><div class="fdot"></div></div>
+            <div class="sban show" style="margin-top:9px"><span class="sbi">✅</span><div><div class="sbt">Import Successful</div><div class="sbs">Please note: It may take a few mins for emails to be sent out to your users.</div></div></div>
+          </div>
+          <div class="mftr">
+            <div class="fl">
+              <button class="mb-gh">Get started with our .csv template</button>
+              <button class="mb-gh"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button>
+            </div>
+            <button class="mb mb-done" onclick="finishImport()">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILE PICKER -->
+    <div class="fp-back" id="fpBack">
+      <div class="fp">
+        <div class="fp-bar"><div class="fp-dots"><div class="fp-dot" style="background:#ff5f57"></div><div class="fp-dot" style="background:#febc2e"></div><div class="fp-dot" style="background:#28c840"></div></div><div class="fp-bar-title">Open</div><div class="fp-nav-btns"><button class="fp-nav-btn">‹</button><button class="fp-nav-btn">›</button></div></div>
+        <div class="fp-search-bar"><input class="fp-search" placeholder="🔍  Search" readonly/><div class="fp-vbs"><button class="fp-vb active">☰</button><button class="fp-vb">⊞</button></div></div>
+        <div class="fp-crumb" id="fpCrumb"></div>
+        <div class="fp-body">
+          <div class="fp-sidebar">
+            <div class="fp-sg">
+              <div class="fp-sg-label">Favorites</div>
+              <div class="fp-si" id="fsi0" onclick="fpGoRoot()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>My Files</div>
+              <div class="fp-si" id="fsi1" onclick="fpGoDesktop()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Desktop</div>
+              <div class="fp-si" id="fsi2" onclick="fpGoDownloads()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Downloads</div>
+            </div>
+            <div class="fp-sg">
+              <div class="fp-sg-label">Locations</div>
+              <div class="fp-si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>iCloud Drive</div>
+              <div class="fp-si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Applications</div>
+            </div>
+          </div>
+          <div class="fp-files" id="fpFiles"></div>
+        </div>
+        <div class="fp-footer">
+          <div class="fp-fname-bar"><span class="fp-fname-label">File name:</span><input class="fp-fname-input" id="fpInput" placeholder="No file selected" readonly/></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:10px;color:#888">CSV files (.csv)</span>
+            <div class="fp-btns"><button class="fp-cancel" onclick="closePicker()">Cancel</button><button class="fp-open" id="fpOpen" disabled onclick="confirmPick()">Open</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETE -->
+    <div class="cover" id="cover">
+      <div class="co-icon">🎉</div>
+      <div class="co-title">Task Complete!</div>
+      <div class="co-score">✅ Assessment passed</div>
+      <p class="co-body">You successfully completed the full Bulk User Import workflow.</p>
+      <div class="co-recap">
+        <div class="co-row"><span class="co-key">Step 1</span><span class="co-val">Navigated to Users</span></div>
+        <div class="co-row"><span class="co-key">Step 2</span><span class="co-val">Opened Create → Bulk Import Roster</span></div>
+        <div class="co-row"><span class="co-key">Step 3</span><span class="co-val">Downloaded the CSV template</span></div>
+        <div class="co-row"><span class="co-key">Step 4</span><span class="co-val" id="coStep4">Filled in user data</span></div>
+        <div class="co-row"><span class="co-key">Step 5</span><span class="co-val" id="coStep5">Saved file</span></div>
+        <div class="co-row"><span class="co-key">Step 6</span><span class="co-val" id="coStep6">Uploaded CSV</span></div>
+        <div class="co-row"><span class="co-key">Step 7</span><span class="co-val">Confirmed import and clicked Done</span></div>
+      </div>
+      <button class="co-btn" onclick="restart()">↺ Try Again</button>
+    </div>
+  </div>
+</div>
+
+<!-- SPREADSHEET EDITOR -->
+<div class="ss-back" id="ssBack">
+  <div class="ss-win">
+    <div class="ss-titlebar">
+      <div class="ss-dots">
+        <div class="ss-dot" style="background:#ff5f57" onclick="closeSS()" title="Close"></div>
+        <div class="ss-dot" style="background:#febc2e"></div>
+        <div class="ss-dot" style="background:#28c840"></div>
+      </div>
+      <div class="ss-win-title"><b id="ssFname">bulk-import-template.csv</b></div>
+      <div style="width:68px"></div>
+    </div>
+    <div class="ss-ribbon">
+      <div class="ss-rb-grp">
+        <button class="ss-rbtn" onclick="addRow()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Row</button>
+        <button class="ss-rbtn" onclick="removeLastRow()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>Remove Row</button>
+      </div>
+      <div class="ss-rb-grp">
+        <span class="ss-fname-lbl" id="ssDisplayName">bulk-import-template.csv</span>
+      </div>
+      <div class="ss-rb-grp">
+        <button class="ss-rbtn green" onclick="openSaveDialog()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Save As…
+        </button>
+      </div>
+    </div>
+    <div class="ss-body-wrap">
+      <!-- SOURCE DATA PANEL -->
+      <div class="ss-src">
+        <div class="ss-src-hdr">
+          <div class="ss-src-title">📋 Source Data</div>
+          <button class="ss-src-copy" id="srcCopyBtn" onclick="copySourceData()">Copy All</button>
+        </div>
+        <div class="ss-src-hint">Copy this data, then <b>click a cell</b> in the grid and press <b>Ctrl+V</b> (or ⌘V) to paste.</div>
+        <div class="ss-src-data" id="ssSrcData"></div>
+      </div>
+      <!-- GRID SIDE -->
+      <div class="ss-grid-side">
+        <div class="ss-err" id="ssErr"></div>
+        <div class="ss-fbar">
+          <div class="ss-cellref" id="ssCellRef">A1</div>
+          <div class="ss-fbar-div"></div>
+          <div class="ss-fbar-val" id="ssCellVal">—</div>
+        </div>
+        <div class="ss-grid-wrap" id="ssGridWrap" tabindex="0">
+          <table class="ss-tbl" id="ssTbl">
+            <thead><tr>
+              <th class="corner"></th>
+              <th class="ch">FirstName</th>
+              <th class="ch req">LastName</th>
+              <th class="ch req">Email</th>
+              <th class="ch req">Roles</th>
+              <th class="ch">Status</th>
+            </tr></thead>
+            <tbody id="ssBody"></tbody>
+          </table>
+        </div>
+        <div class="ss-statusbar">
+          <div class="ss-status" id="ssStatus">Fill in at least one row — or paste the source data</div>
+          <div class="ss-rowcount" id="ssRowCount">0 rows</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- SAVE DIALOG -->
+<div class="sd-back" id="sdBack">
+  <div class="sd-box">
+    <div class="sd-bar">
+      <div class="sd-dots"><div class="sd-dot" style="background:#ff5f57"></div><div class="sd-dot" style="background:#febc2e"></div><div class="sd-dot" style="background:#28c840"></div></div>
+      <div class="sd-title-txt">Save As</div>
+    </div>
+    <div class="sd-body">
+      <div class="sd-row">
+        <span class="sd-lbl">File name</span>
+        <input class="sd-inp" id="sdFilename" value="users.csv"/>
+      </div>
+      <div class="sd-row" style="align-items:flex-start">
+        <span class="sd-lbl" style="padding-top:6px">Location</span>
+        <div style="flex:1">
+          <div class="sd-locs">
+            <div class="sd-loc" onclick="selLoc('myfiles',this)"><span class="sd-loc-icon">🏠</span>My Files</div>
+            <div class="sd-loc" onclick="selLoc('desktop',this)"><span class="sd-loc-icon">🖥</span>Desktop</div>
+            <div class="sd-loc sel" id="sdLocDl" onclick="selLoc('downloads',this)"><span class="sd-loc-icon">📥</span>Downloads</div>
+          </div>
+          <div class="sd-hint">Save to <strong>Downloads</strong> so you can easily find it in the file picker.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sd-footer">
+      <button class="sd-btn sd-cancel" onclick="closeSaveDialog()">Cancel</button>
+      <button class="sd-btn sd-save" onclick="doSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var cur=0, uploadDone=false, savedFile=null, saveLocation='downloads';
+var fpView='root', fpSelected=null;
+var ssRows=[];
+var COLS=['FirstName','LastName','Email','Roles','Status'];
+var COL_LETTERS=['A','B','C','D','E'];
+
+var SOURCE_DATA=[
+  {FirstName:'Elijah',  LastName:'Torres',    Email:'elijah.torres@examplecorp.com',   Roles:'Learner', Status:'Active'},
+  {FirstName:'Sofia',   LastName:'Mendez',    Email:'sofia.mendez@examplecorp.com',    Roles:'Learner', Status:'Active'},
+  {FirstName:'Priya',   LastName:'Sharma',    Email:'priya.sharma@examplecorp.com',    Roles:'Learner', Status:'Active'},
+  {FirstName:'Hannah',  LastName:'Fitzgerald',Email:'hannah.fitzgerald@examplecorp.com',Roles:'Learner',Status:'Active'},
+  {FirstName:'Marcus',  LastName:'Chen',      Email:'marcus.chen@examplecorp.com',     Roles:'Learner', Status:'Active'},
+  {FirstName:'James',   LastName:'Hartley',   Email:'james.hartley@examplecorp.com',   Roles:'Learner', Status:'Active'},
+  {FirstName:'Liam',    LastName:'Okafor',    Email:'liam.okafor@examplecorp.com',     Roles:'Learner', Status:'Active'},
+  {FirstName:'Natasha', LastName:'Volkov',    Email:'natasha.volkov@examplecorp.com',  Roles:'Learner', Status:'Active'},
+  {FirstName:'Derek',   LastName:'Wills',     Email:'derek.wills@examplecorp.com',     Roles:'Learner', Status:'Active'},
+  {FirstName:'Aoife',   LastName:'Brennan',   Email:'aoife.brennan@examplecorp.com',   Roles:'Learner', Status:'Active'},
+];
+
+var FS={
+  root:[
+    {type:'folder',name:'Desktop'},{type:'folder',name:'Documents'},
+    {type:'folder',name:'Downloads'},{type:'folder',name:'Pictures'},
+    {type:'file',name:'budget_2026.xlsx',size:'48 KB',date:'Mar 3, 2026',ext:'xlsx'},
+    {type:'file',name:'meeting_notes.docx',size:'12 KB',date:'Mar 7, 2026',ext:'docx'},
+  ],
+  desktop:[
+    {type:'file',name:'quarterly_report.pdf',size:'2.1 MB',date:'Feb 28, 2026',ext:'pdf'},
+    {type:'file',name:'team_org_chart.png',size:'340 KB',date:'Mar 1, 2026',ext:'png'},
+  ],
+  downloads:[
+    {type:'file',name:'bulk-import-template.csv',size:'1 KB',date:'Mar 10, 2026',ext:'csv'},
+    {type:'file',name:'onboarding_checklist.pdf',size:'890 KB',date:'Mar 8, 2026',ext:'pdf'},
+    {type:'file',name:'software_installer.dmg',size:'245 MB',date:'Mar 5, 2026',ext:'dmg'},
+    {type:'file',name:'zoom_recording.mp4',size:'1.2 GB',date:'Mar 4, 2026',ext:'mp4'},
+  ]
+};
+
+var STEPS=7;
+(function(){
+  var el=document.getElementById('tDots');
+  for(var i=0;i<STEPS;i++){var d=document.createElement('div');d.className='tdot';d.id='td'+i;el.appendChild(d);}
+})();
+
+function advance(n){
+  if(n<=cur)return; cur=n;
+  var pct=Math.round((cur/STEPS)*100);
+  document.getElementById('tFill').style.width=pct+'%';
+  document.getElementById('tPct').textContent=pct+'%';
+  for(var i=0;i<STEPS;i++) document.getElementById('td'+i).className='tdot'+(i<cur?'done':i===cur?'active':'');
+}
+
+function navClick(s){
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('sel');});
+  if(s==='users'){
+    document.getElementById('navUsers').classList.add('sel');
+    document.getElementById('explorePage').style.display='none';
+    document.getElementById('usersPage').classList.add('show');
+    document.getElementById('spanel').classList.add('show');
+    advance(1);
+  } else {
+    document.getElementById('navExplore').classList.add('sel');
+    document.getElementById('explorePage').style.display='';
+    document.getElementById('usersPage').classList.remove('show');
+    document.getElementById('spanel').classList.remove('show');
+  }
+  document.getElementById('ddmenu').classList.remove('open');
+}
+
+function toggleCreate(){document.getElementById('ddmenu').classList.toggle('open');}
+document.addEventListener('click',function(e){
+  var dd=document.getElementById('ddmenu');
+  if(!dd.contains(e.target)&&e.target!==document.getElementById('cbtn')) dd.classList.remove('open');
+});
+
+function openBulkModal(){
+  document.getElementById('ddmenu').classList.remove('open');
+  showMV('mvUp');
+  document.getElementById('mback').classList.add('open');
+  advance(2);
+}
+function closeModal(){document.getElementById('mback').classList.remove('open');}
+function showMV(id){document.querySelectorAll('.mv').forEach(function(v){v.classList.remove('active');});document.getElementById(id).classList.add('active');}
+
+/* DOWNLOAD → opens spreadsheet */
+function doDownload(){
+  advance(3);
+  openSS();
+}
+
+/* ── SPREADSHEET ── */
+function openSS(){
+  ssRows=[];
+  for(var i=0;i<5;i++) ssRows.push({FirstName:'',LastName:'',Email:'',Roles:'',Status:''});
+  renderSrcPanel();
+  renderSS();
+  document.getElementById('ssBack').classList.add('open');
+  // paste handler
+  document.getElementById('ssGridWrap').addEventListener('paste',handlePaste);
+}
+function closeSS(){document.getElementById('ssBack').classList.remove('open');}
+
+function renderSrcPanel(){
+  var cont=document.getElementById('ssSrcData');
+  cont.innerHTML='';
+  SOURCE_DATA.forEach(function(r,i){
+    var card=document.createElement('div');card.className='ss-src-row';
+    card.innerHTML='<div class="ss-src-rowhdr">Row '+(i+1)+'</div>'+
+      COLS.map(function(c){return '<div class="ss-src-cell"><span class="ss-src-lbl">'+c+'</span><span class="ss-src-val">'+(r[c]||'—')+'</span></div>';}).join('');
+    cont.appendChild(card);
+  });
+}
+
+function copySourceData(){
+  var tsv=SOURCE_DATA.map(function(r){return COLS.map(function(c){return r[c]||'';}).join('\t');}).join('\n');
+  navigator.clipboard.writeText(tsv).then(function(){
+    var btn=document.getElementById('srcCopyBtn');
+    btn.textContent='✓ Copied!';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copy All';btn.classList.remove('copied');},2000);
+  }).catch(function(){
+    // fallback
+    var ta=document.createElement('textarea');ta.value=tsv;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    var btn=document.getElementById('srcCopyBtn');
+    btn.textContent='✓ Copied!';btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copy All';btn.classList.remove('copied');},2000);
+  });
+}
+
+function handlePaste(e){
+  e.preventDefault();
+  var text=(e.clipboardData||window.clipboardData).getData('text');
+  if(!text) return;
+  var lines=text.trim().split('\n');
+  var parsed=lines.map(function(l){return l.split('\t');});
+  // ensure enough rows
+  while(ssRows.length<parsed.length) ssRows.push({FirstName:'',LastName:'',Email:'',Roles:'',Status:''});
+  parsed.forEach(function(cols,ri){
+    COLS.forEach(function(col,ci){
+      if(cols[ci]!==undefined) ssRows[ri][col]=cols[ci].trim();
+    });
+  });
+  renderSS();
+  showToast('✓ Pasted '+parsed.length+' row'+(parsed.length===1?'':'s'));
+}
+
+function showToast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2400);
+}
+
+function renderSS(){
+  var body=document.getElementById('ssBody');
+  body.innerHTML='';
+  ssRows.forEach(function(row,ri){
+    var tr=document.createElement('tr');
+    var rn=document.createElement('td');rn.className='rn';rn.textContent=ri+1;tr.appendChild(rn);
+    COLS.forEach(function(col,ci){
+      var td=document.createElement('td');td.className='ss-cell';
+      var inp;
+      if(col==='Roles'){
+        inp=document.createElement('select');
+        ['','Learner','Admin','Manager'].forEach(function(v){
+          var o=document.createElement('option');o.value=v;o.textContent=v||'— select —';
+          if(row[col]===v)o.selected=true;inp.appendChild(o);
+        });
+      } else if(col==='Status'){
+        inp=document.createElement('select');
+        ['','Active','Invited'].forEach(function(v){
+          var o=document.createElement('option');o.value=v;o.textContent=v||'— select —';
+          if(row[col]===v)o.selected=true;inp.appendChild(o);
+        });
+      } else {
+        inp=document.createElement('input');inp.type='text';inp.value=row[col];
+        inp.placeholder=col==='Email'?'user@example.com':col;
+      }
+      (function(r,c,ci2,el){
+        el.addEventListener('input',function(){ssRows[r][c]=el.value;updateSSStatus();});
+        el.addEventListener('change',function(){ssRows[r][c]=el.value;updateSSStatus();});
+        el.addEventListener('focus',function(){
+          document.getElementById('ssCellRef').textContent=COL_LETTERS[ci2]+(r+1);
+          document.getElementById('ssCellVal').textContent=el.value||'';
+        });
+      })(ri,col,ci,inp);
+      td.appendChild(inp);tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+  updateSSStatus();
+}
+
+function addRow(){ssRows.push({FirstName:'',LastName:'',Email:'',Roles:'',Status:''});renderSS();var g=document.querySelector('.ss-grid-wrap');g.scrollTop=g.scrollHeight;}
+function removeLastRow(){if(ssRows.length>1){ssRows.pop();renderSS();}}
+
+function countValid(){return ssRows.filter(function(r){return r.FirstName.trim()&&r.LastName.trim()&&r.Email.trim()&&r.Roles.trim();}).length;}
+
+function updateSSStatus(){
+  var v=countValid(),t=ssRows.length;
+  document.getElementById('ssRowCount').textContent=v+' complete / '+t+' rows';
+  document.getElementById('ssStatus').textContent=v>0?'✓ '+v+' user'+(v===1?'':'s')+' ready — click Save As… to save your file':'Fill in FirstName, LastName, Email, and Roles for at least one row';
+}
+
+/* SAVE DIALOG */
+function openSaveDialog(){
+  if(countValid()===0){
+    var e=document.getElementById('ssErr');
+    e.textContent='Please complete at least one row (FirstName, LastName, Email, and Roles are required) before saving.';
+    e.classList.add('show');setTimeout(function(){e.classList.remove('show');},4000);return;
+  }
+  document.getElementById('ssErr').classList.remove('show');
+  document.getElementById('sdBack').classList.add('open');
+}
+function closeSaveDialog(){document.getElementById('sdBack').classList.remove('open');}
+
+function selLoc(loc,el){
+  saveLocation=loc;
+  document.querySelectorAll('.sd-loc').forEach(function(e){e.classList.remove('sel');});
+  el.classList.add('sel');
+}
+
+function doSave(){
+  var fname=document.getElementById('sdFilename').value.trim();
+  if(!fname)return;
+  if(!fname.toLowerCase().endsWith('.csv')) fname+='.csv';
+  var validCount=countValid();
+
+  // build csv
+  var lines=['"FirstName","LastName","Email*","Roles*","Status"'];
+  ssRows.forEach(function(r){
+    if(r.FirstName.trim()||r.LastName.trim()||r.Email.trim()||r.Roles.trim())
+      lines.push('"'+esc(r.FirstName)+'","'+esc(r.LastName)+'","'+esc(r.Email)+'","'+esc(r.Roles)+'","'+esc(r.Status)+'"');
+  });
+  var csvStr=lines.join('\n');
+
+  var fileObj={type:'file',name:fname,size:Math.ceil(csvStr.length/1024)+'KB',date:'Mar 10, 2026',ext:'csv',isUpload:true,rowCount:validCount};
+  savedFile=fileObj;
+
+  // place in chosen location
+  var locKey=saveLocation==='desktop'?'desktop':saveLocation==='myfiles'?'root':'downloads';
+  FS[locKey]=FS[locKey].filter(function(f){return !f.isUpload;});
+  if(locKey==='root') FS[locKey].push(fileObj); else FS[locKey].unshift(fileObj);
+
+  // real download
+  var blob=new Blob(['\uFEFF'+csvStr],{type:'text/csv;charset=utf-8;'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download=fname;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+
+  document.getElementById('ssFname').textContent=fname;
+  document.getElementById('ssDisplayName').textContent=fname;
+  document.getElementById('ssStatus').textContent='✓ Saved "'+fname+'" to '+(locKey==='downloads'?'Downloads':locKey==='desktop'?'Desktop':'My Files');
+
+  document.getElementById('coStep4').textContent=validCount+' user'+(validCount===1?'':'s')+' entered';
+  document.getElementById('coStep5').textContent='Saved "'+fname+'" to '+(locKey==='downloads'?'Downloads':locKey==='desktop'?'Desktop':'My Files');
+
+  closeSaveDialog();
+  advance(4); advance(5);
+  setTimeout(closeSS, 600);
+}
+function esc(s){return (s||'').replace(/"/g,'""');}
+
+/* FILE PICKER */
+function openFilePicker(){
+  fpView='root';fpSelected=null;
+  document.getElementById('fpInput').value='';
+  document.getElementById('fpOpen').disabled=true;
+  renderFP();
+  document.getElementById('fpBack').classList.add('open');
+}
+function renderFP(){
+  var files=FS[fpView]||FS.root;
+  var names={root:'My Files',desktop:'Desktop',downloads:'Downloads'};
+  var crumb=document.getElementById('fpCrumb');
+  if(fpView==='root'){crumb.innerHTML='<span>📁 My Files</span>';}
+  else{crumb.innerHTML='<span onclick="fpGoRoot()" style="color:#3478F6;cursor:pointer">📁 My Files</span><span class="sep"> › </span><span>'+names[fpView]+'</span>';}
+  document.querySelectorAll('.fp-si').forEach(function(e){e.classList.remove('active');});
+  if(fpView==='root') document.getElementById('fsi0').classList.add('active');
+  if(fpView==='desktop') document.getElementById('fsi1').classList.add('active');
+  if(fpView==='downloads') document.getElementById('fsi2').classList.add('active');
+  var cont=document.getElementById('fpFiles');cont.innerHTML='';
+  if(!files.length){cont.innerHTML='<div class="fp-empty">This folder is empty</div>';return;}
+  files.forEach(function(f){
+    var el=document.createElement('div');
+    if(f.type==='folder'){
+      el.className='fp-folder';
+      el.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="#FEBC2E" stroke="#e0a800" stroke-width="1"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><div class="fp-finfo"><div class="fp-fname-txt">'+f.name+'</div></div>';
+      el.onclick=function(){if(f.name==='Downloads')fpGoDownloads();else if(f.name==='Desktop')fpGoDesktop();};
+    } else {
+      el.className='fp-file';
+      var ic=f.ext==='csv'?'#1a6e3c':f.ext==='pdf'?'#c0392b':f.ext==='xlsx'?'#1e7e34':'#777';
+      var meta=f.size+(f.isUpload&&f.rowCount?' · '+f.rowCount+' user'+(f.rowCount===1?'':'s'):'');
+      el.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="'+ic+'" opacity=".18"/><polyline points="14 2 14 8 20 8" stroke="'+ic+'" stroke-width="1.5" fill="none"/><line x1="8" y1="13" x2="16" y2="13" stroke="'+ic+'" stroke-width="1.5"/><line x1="8" y1="17" x2="12" y2="17" stroke="'+ic+'" stroke-width="1.5"/></svg><div class="fp-finfo"><div class="fp-fname-txt">'+f.name+'</div><div class="fp-fmeta">'+meta+'</div></div><div class="fp-fdate">'+f.date+'</div>';
+      el.onclick=function(){selFPFile(f,el);};
+      el.ondblclick=function(){selFPFile(f,el);if(f.isUpload)confirmPick();};
+    }
+    cont.appendChild(el);
+  });
+}
+function selFPFile(f,el){
+  document.querySelectorAll('.fp-file').forEach(function(e){e.classList.remove('selected');});
+  el.classList.add('selected');fpSelected=f;
+  document.getElementById('fpInput').value=f.name;
+  document.getElementById('fpOpen').disabled=!f.isUpload;
+}
+function fpGoRoot(){fpView='root';fpSelected=null;document.getElementById('fpInput').value='';document.getElementById('fpOpen').disabled=true;renderFP();}
+function fpGoDesktop(){fpView='desktop';fpSelected=null;document.getElementById('fpInput').value='';document.getElementById('fpOpen').disabled=true;renderFP();}
+function fpGoDownloads(){fpView='downloads';fpSelected=null;document.getElementById('fpInput').value='';document.getElementById('fpOpen').disabled=true;renderFP();}
+function closePicker(){document.getElementById('fpBack').classList.remove('open');}
+function confirmPick(){
+  if(!fpSelected||!fpSelected.isUpload)return;
+  closePicker();uploadDone=true;
+  var uz=document.getElementById('uz');uz.classList.add('dza');uz.onclick=null;uz.style.cursor='default';
+  document.getElementById('fnLabel').textContent=fpSelected.name;
+  document.getElementById('frow').classList.add('show');
+  document.getElementById('sibtn').disabled=false;
+  document.getElementById('coStep6').textContent='Uploaded "'+fpSelected.name+'"';
+  advance(6);
+}
+
+function showCover(){document.getElementById('cover').classList.add('open');}
+
+function startImport(){if(!uploadDone)return;document.getElementById('sibtn').disabled=true;document.getElementById('cpop').classList.add('show');}
+function confirmImport(){document.getElementById('sucFname').textContent=document.getElementById('fnLabel').textContent;showMV('mvSuc');}
+function finishImport(){
+  document.getElementById('mback').classList.remove('open');
+  document.getElementById('explorePage').style.display='none';
+  document.getElementById('usersPage').classList.add('show');
+
+  var total=3+(savedFile?savedFile.rowCount:0);
+  document.getElementById('spUsers').textContent='All Users ('+total+')';
+  document.getElementById('ebar').style.display='flex';
+  document.getElementById('tFill').style.width='100%';document.getElementById('tPct').textContent='100%';
+  for(var i=0;i<STEPS;i++) document.getElementById('td'+i).className='tdot done';
+  document.getElementById('tMeta').textContent='Assessment Complete ✓';
+  advance(7);
+
+  // Reset table to existing users first
+  var tb=document.getElementById('tbody');
+  tb.innerHTML='<tr><td>Jane</td><td>Doe</td><td>janedoe@email.com</td><td>Learner</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr><tr><td>Shelby</td><td>McWhorter</td><td>shelbymcwhorter1@gmail.com</td><td>Admin</td><td><span class="badge ba"><span class="bd"></span>Active</span></td><td></td><td>2/23/2026 12:41 pm</td></tr><tr><td>Shelby</td><td>McWhorter</td><td>smcwhorter@ethossystems.com</td><td>Admin</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr>';
+
+  // Stagger new rows in
+  var newRows=ssRows.filter(function(r){return r.FirstName.trim()||r.LastName.trim()||r.Email.trim()||r.Roles.trim();});
+  newRows.forEach(function(r,i){
+    setTimeout(function(){
+      var st=r.Status||'Invited';var bc=st==='Active'?'ba':'bi';
+      var tr=document.createElement('tr');tr.className='nr';
+      tr.style.opacity='0';
+      tr.innerHTML='<td><strong>'+r.FirstName+'</strong></td><td>'+r.LastName+'</td><td>'+r.Email+'</td><td>'+(r.Roles||'Learner')+'</td><td><span class="badge '+bc+'"><span class="bd"></span>'+st+'</span></td><td></td><td>Not Available</td>';
+      tb.appendChild(tr);
+      requestAnimationFrame(function(){tr.style.opacity='';});
+    }, i*120);
+  });
+
+  var delay=newRows.length*120+400;
+  setTimeout(function(){
+    showToast('✓ '+newRows.length+' user'+(newRows.length===1?'':'s')+' imported successfully');
+    // Update instruction panel to prompt user to review and complete
+    document.getElementById('iNum').textContent='✓';
+    document.getElementById('iNum').style.background='#e6f9f0';
+    document.getElementById('iNum').style.color='#2d6a4f';
+    document.getElementById('iTitle').textContent='Import complete — review your results';
+    document.getElementById('iDesc').innerHTML=newRows.length+' new user'+(newRows.length===1?'':'s')+' added to the platform. Take a moment to review the table, then click <strong>Complete Assessment</strong> when you\'re ready.';
+    document.getElementById('completeBtn').style.display='flex';
+  }, delay);
+}
+
+function populateUsers(){
+  var tb=document.getElementById('tbody');
+  tb.innerHTML='<tr><td>Jane</td><td>Doe</td><td>janedoe@email.com</td><td>Learner</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr><tr><td>Shelby</td><td>McWhorter</td><td>shelbymcwhorter1@gmail.com</td><td>Admin</td><td><span class="badge ba"><span class="bd"></span>Active</span></td><td></td><td>2/23/2026 12:41 pm</td></tr><tr><td>Shelby</td><td>McWhorter</td><td>smcwhorter@ethossystems.com</td><td>Admin</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr>';
+  ssRows.forEach(function(r){
+    if(!(r.FirstName.trim()||r.LastName.trim()||r.Email.trim()||r.Roles.trim()))return;
+    var st=r.Status||'Invited';var bc=st==='Active'?'ba':'bi';
+    var tr=document.createElement('tr');tr.className='nr';
+    tr.innerHTML='<td><strong>'+r.FirstName+'</strong></td><td>'+r.LastName+'</td><td>'+r.Email+'</td><td>'+(r.Roles||'Learner')+'</td><td><span class="badge '+bc+'"><span class="bd"></span>'+st+'</span></td><td></td><td>Not Available</td>';
+    tb.appendChild(tr);
+  });
+}
+
+function restart(){
+  cur=0;uploadDone=false;savedFile=null;fpSelected=null;fpView='root';ssRows=[];saveLocation='downloads';
+  FS.downloads=FS.downloads.filter(function(f){return !f.isUpload;});
+  FS.desktop=FS.desktop.filter(function(f){return !f.isUpload;});
+  FS.root=FS.root.filter(function(f){return !f.isUpload;});
+  ['cover','mback','fpBack','ssBack','sdBack'].forEach(function(id){document.getElementById(id).classList.remove('open');});
+  document.getElementById('ebar').style.display='none';
+  document.getElementById('tFill').style.width='0%';document.getElementById('tPct').textContent='0%';
+  document.getElementById('tMeta').textContent='Task Assessment — Bulk Import Roster';
+  for(var i=0;i<STEPS;i++) document.getElementById('td'+i).className='tdot';
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('sel');});
+  document.getElementById('navExplore').classList.add('sel');
+  document.getElementById('explorePage').style.display='';
+  document.getElementById('usersPage').classList.remove('show');
+  document.getElementById('spanel').classList.remove('show');
+  showMV('mvUp');
+  var uz=document.getElementById('uz');uz.className='uz';uz.style.cursor='pointer';uz.onclick=openFilePicker;
+  document.getElementById('frow').classList.remove('show');
+  document.getElementById('cpop').classList.remove('show');
+  document.getElementById('sibtn').disabled=true;
+  document.getElementById('tbody').innerHTML='<tr><td>Jane</td><td>Doe</td><td>janedoe@email.com</td><td>Learner</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr><tr><td>Shelby</td><td>McWhorter</td><td>shelbymcwhorter1@gmail.com</td><td>Admin</td><td><span class="badge ba"><span class="bd"></span>Active</span></td><td></td><td>2/23/2026 12:41 pm</td></tr><tr><td>Shelby</td><td>McWhorter</td><td>smcwhorter@ethossystems.com</td><td>Admin</td><td><span class="badge bi"><span class="bd"></span>Invited</span></td><td></td><td>Not Available</td></tr>';
+  document.getElementById('spUsers').textContent='All Users (3)';
+  document.getElementById('ssFname').textContent='bulk-import-template.csv';
+  document.getElementById('ssDisplayName').textContent='bulk-import-template.csv';
+  document.querySelectorAll('.sd-loc').forEach(function(e){e.classList.remove('sel');});
+  document.getElementById('sdLocDl').classList.add('sel');
+  document.getElementById('sdFilename').value='users.csv';
+  // reset instruction panel
+  document.getElementById('iNum').textContent='📋';
+  document.getElementById('iNum').style.background='';document.getElementById('iNum').style.color='';
+  document.getElementById('iTitle').textContent='Your Task: Bulk Import a User Roster';
+  document.getElementById('iDesc').textContent='Download the CSV template, fill in your user data, save the file, then upload it to complete a bulk import.';
+  document.getElementById('completeBtn').style.display='none';
+}
+</script>
+</body>
+</html>
